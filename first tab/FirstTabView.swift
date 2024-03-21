@@ -10,7 +10,7 @@ import SwiftUI
 struct FirstTabView: View {
     @State private var showSettings = false
     @State private var path = NavigationPath()
-
+    
     var body: some View {
         NavigationStack(path: $path) {
             List {
@@ -18,6 +18,9 @@ struct FirstTabView: View {
                 NavigationLink("Go to B", value: "Show BBB")
                 NavigationLink("Go to number 1", value: 1)
                 Button {
+                    path.append("butterfly")
+                    path.append("JJJJ")
+                    path.append(8)
                     path.append("GGG")
                 } label: {
                     Text("Show Favorite")
@@ -30,7 +33,7 @@ struct FirstTabView: View {
                 }
                 
                 Section("Old") {
-                    
+                    //faulty example not working
                     NavigationLink("Old link with destination") {
                         VStack {
                             Text("old navigation link")
@@ -46,6 +49,9 @@ struct FirstTabView: View {
             }
             .navigationDestination(for: Int.self) { numberValue in
                 Text("Detail with \(numberValue)")
+            }
+            .navigationDestination(isPresented: $showSettings) {
+                Text("Settings")
             }
             .navigationTitle("Root View")
         }
@@ -65,13 +71,11 @@ struct FirstTabView: View {
             } label: {
                 Text("go to root view")
             }
-            
-            
         }
     }
 }
 
-    
+
 #Preview {
     FirstTabView()
 }
