@@ -32,7 +32,6 @@ struct SecondTabView: View {
                 }
                 
                 Button {
-                    
                     guard let book = books.first else { return }
                     
                     selectedBookPath = [book]
