@@ -16,21 +16,24 @@ struct RootView: View {
             
             Section("Songs") {
                 ForEach(modelData.songs){ song in
-                    NavigationLink(song.title, value: song)
+                    NavigationLink(song.title, value: SelectionState.song(song))
                 }
             }
             
             Section("Movie") {
                 ForEach(modelData.movies){ movie in
-                    NavigationLink(movie.title, value: movie)
+                    NavigationLink(movie.title, value: SelectionState.movie(movie))
                 }
             }
             
             Section("Books") {
                 ForEach(modelData.books){ book in
-                    NavigationLink(book.title, value: book)
+                    NavigationLink(book.title, value: SelectionState.book(book))
                 }
             }
+            
+            NavigationLink("Settings", value: SelectionState.settings)
+
         }
         .navigationTitle("Root View")
         

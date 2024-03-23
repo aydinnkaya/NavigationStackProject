@@ -8,11 +8,63 @@
 import SwiftUI
 
 struct SongDetailView: View {
+    
+    let song: Song
+    @EnvironmentObject var modelData: ModelDataManager
+    @EnvironmentObject var navigationStateManager: NavigationStateManager
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text("Song Detail")
+            Text(song.artist)
+                .bold()
+            Text("\(song.year)")
+            
+            
+            Divider()
+            
+            
+            
+            VStack(alignment: .leading) {
+                Text("People Also Liked")
+                
+                ForEach(modelData.songs) { song in
+                    NavigationLink(value: SelectionState.song(song)) {
+                        Label(song.title, systemImage: "music.note")
+                    }
+                }
+            }
+            
+            Button {
+                navigationStateManager.popToRoot()
+            } label: {
+                Text("go to root")
+            }
+            
+        }
+        .navigationTitle(song.title)
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button {
+                    navigationStateManager.goToSettings()
+                } label: {
+                    Image(systemName: "gear")
+                }
+                
+            }
+        }
+        
     }
 }
 
+
 #Preview {
-    SongDetailView()
+    NavigationStack {
+        SongDetailView(song: Song(title: "Smells Like Teen Spirit",
+                                  artist: "Nirvana",
+                                  year: 1991))
+        .environmentObject(ModelDataManager())
+        .environmentObject(NavigationStateManager())
+    }
 }
+
