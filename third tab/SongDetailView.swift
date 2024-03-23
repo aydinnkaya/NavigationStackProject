@@ -23,8 +23,7 @@ struct SongDetailView: View {
             
             Divider()
             
-            
-            
+
             VStack(alignment: .leading) {
                 Text("People Also Liked")
                 

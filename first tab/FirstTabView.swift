@@ -23,6 +23,14 @@ struct FirstTabView: View {
                     NavigationLink("Go to B", value: "Show BBB")
 
                     NavigationLink("Go to number 1", value: 1)
+                    
+                    NavigationLink(value: "AirPlan") {
+                        Image(systemName: "airplane")
+                            .foregroundStyle(.red)
+                            .formStyle(.grouped)
+                            Text("AirPlan")
+                            .hoverEffect(.highlight)
+                    }
                   
                     Button {
                         path.append("GGG")

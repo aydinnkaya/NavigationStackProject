@@ -48,14 +48,4 @@ struct DetailView: View {
                    path: .constant(NavigationPath()))
     }
 }
-/*
- struct DetailView_Previews: PreviewProvider {
- static var previews: some View {
- NavigationStack {
- DetailView(text: "CCCC",
- path: .constant(NavigationPath()))
- }
- 
- }
- }
-*/
+
